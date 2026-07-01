@@ -41,7 +41,8 @@
             Button2.PerformClick()
         End If
         Dim nm = FilePlayerName
-        Button2.Text = "Name: " & nm
+
+        Button2.Text = Utils.GetAsciiArt2(nm)
         If nm <> "" And wr Is Nothing Then
             wr = New IO.StreamWriter(IO.Path.Combine(usersFolder, nm & ".playing"))
         End If
@@ -181,7 +182,7 @@
             Catch ex As Exception : End Try
             wr = New IO.StreamWriter(IO.Path.Combine(usersFolder, i & ".playing"))
             FilePlayerName = i
-            Button2.Text = "Name: " & i
+            Button2.Text = Utils.GetAsciiArt2(i)
         Else
             MsgBox("Please enter a valid name")
             Button2.PerformClick()
@@ -190,7 +191,6 @@
 
     Private Sub DataGridView1_CurrentCellChanged(sender As Object, e As EventArgs) Handles DataGridView1.CurrentCellChanged
         DataGridView2.Rows.Clear()
-
         If DataGridView1.CurrentCell IsNot Nothing Then
             Dim i As Scores = DataGridView1.Rows(DataGridView1.CurrentCell.RowIndex).Tag
             If i IsNot Nothing Then
