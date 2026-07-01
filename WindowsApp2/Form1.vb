@@ -139,7 +139,7 @@
         End If
         Dim backUpFile As String = IO.Path.Combine(snake_snake_backupFolder, player_name & ".txt")
         If Not IO.Directory.Exists(snake_snake_backupFolder) Then MkDir(snake_snake_backupFolder)
-        IO.File.Copy(filePaht, backUpFile)
+        IO.File.Copy(filePaht, backUpFile, True)
         DisplayTopScores()
         '' focus sa current username
         For Each row As DataGridViewRow In DataGridView1.Rows
