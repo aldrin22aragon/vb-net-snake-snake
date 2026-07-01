@@ -36,10 +36,11 @@
         currentMovement = MOVEMENT.RIGHT
         Head = New BodyPartClass() With {.col = 2, .row = 0, .bodyPart = BodyPartClass.EnumBodyPart.HEAD}
         Tail = New BodyPartClass() With {.col = 0, .row = 0, .bodyPart = BodyPartClass.EnumBodyPart.TAIL}
-        bodyParts = New List(Of BodyPartClass)
-        bodyParts.Add(Head)
-        bodyParts.Add(New BodyPartClass() With {.col = 1, .row = 0, .bodyPart = BodyPartClass.EnumBodyPart.BODY})
-        bodyParts.Add(Tail)
+        bodyParts = New List(Of BodyPartClass) From {
+            Head,
+            New BodyPartClass() With {.col = 1, .row = 0, .bodyPart = BodyPartClass.EnumBodyPart.BODY},
+            Tail
+        }
         paintSnakeToForm(True)
     End Sub
     Property currentMovement As MOVEMENT
@@ -124,10 +125,11 @@
                 End Try
                 bodyParts(i) = tmp
             Else
-                Dim tmp As New BodyPartClass
-                tmp.col = followBodyPart.col
-                tmp.row = followBodyPart.row
-                tmp.bodyPart = i_body.bodyPart
+                Dim tmp As New BodyPartClass With {
+                    .col = followBodyPart.col,
+                    .row = followBodyPart.row,
+                    .bodyPart = i_body.bodyPart
+                }
                 bodyParts(i) = tmp
             End If
             followBodyPart = i_body.ShallowCopy
